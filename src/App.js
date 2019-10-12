@@ -7,6 +7,7 @@
  */
 
 import React,{Component} from 'react';
+import {Login} from './Components'
 import {
   SafeAreaView,
   StyleSheet,
@@ -33,7 +34,8 @@ class App extends Component{
       <View>
 
         <Text> Mumma's Moppet </Text>
-
+        <Login/>
+        
       </View>
 
 
