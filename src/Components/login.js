@@ -8,7 +8,9 @@ class Login extends Component{
 		super();
 	}
 
-
+static navigationOptions={
+      header:null
+    }
 	render(){
 		return(
 
