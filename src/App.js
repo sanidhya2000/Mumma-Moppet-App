@@ -8,8 +8,10 @@
 
 import React,{Component} from 'react';
 import SignUp from './pages/signup'
-import Login from './Components/login'
+import Login from './pages/login'
 import Register from './pages/register'
+import DashBoard from './pages/DashBoard'
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -65,7 +67,8 @@ const RootStack=createStackNavigator(
 {
   Login:Login,
   SignUp:SignUp,
-  Register:Register
+  Register:Register,
+  DashBoard:DashBoard
 },
 {
   initialRouteName:'SignUp',

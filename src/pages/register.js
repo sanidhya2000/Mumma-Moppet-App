@@ -27,7 +27,7 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import {getUuid} from '../store/actions/index'
 import RegisterForm from '../Components/RegisterForm';
-
+import { NavigationActions,StackActions  } from 'react-navigation'
 
 const initialState={
    showSpinner:false
@@ -95,6 +95,12 @@ validateInputs=(inputList)=>{
             if(data.data.status=="done"){
               this.setState({showSpinner:false})
               ToastAndroid.show('Registartion Successfull !!', ToastAndroid.SHORT);
+              //this.props.navigation.navigate('DashBoard')
+              this.props.navigation.dispatch(StackActions.reset({
+    index: 0,
+    key: null,
+    actions: [NavigationActions.navigate({ routeName: 'DashBoard' })]
+}))
             }
             else{
               this.setState({showSpinner:false})
