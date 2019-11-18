@@ -7,7 +7,11 @@
  */
 
 import React,{Component} from 'react';
-import {Login} from './Components'
+import SignUp from './pages/signup'
+import Login from './pages/login'
+import Register from './pages/register'
+import DashBoard from './pages/DashBoard'
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -20,6 +24,9 @@ import {
   FlatList
 } from 'react-native';
 
+import { createAppContainer } from '@react-navigation/native';
+import { createStackNavigator } from 'react-navigation-stack';
+
 
 class App extends Component{
 
@@ -28,14 +35,14 @@ class App extends Component{
 
   }
 
+
   render(){
     return(
 
-      <View>
+      <View style={styles.container}>
+      <StatusBar backgroundColor="#ba2d65" barStyle="light-content" />
+        <AppConatiner/>
 
-        <Text> Mumma's Moppet </Text>
-        <Login/>
-        
       </View>
 
 
@@ -44,4 +51,34 @@ class App extends Component{
 
 }
 
-export default App;
+//export default App;
+
+const styles=StyleSheet.create({
+  container : {
+    backgroundColor : '#f48fb1',
+    flex : 1,
+    alignItems:'center',
+    justifyContent:'center'
+  }
+})
+
+
+const RootStack=createStackNavigator(
+{
+  Login:Login,
+  SignUp:SignUp,
+  Register:Register,
+  DashBoard:DashBoard
+},
+{
+  initialRouteName:'SignUp',
+  defaultNavigationOptions:{
+    headerStyle:{
+      backgroundColor:'#ba2d65'
+    }
+  }
+}
+
+);
+export default createAppContainer(RootStack);
+//const AppConatiner= createAppContainer(RootStack);

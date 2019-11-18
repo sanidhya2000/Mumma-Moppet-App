@@ -1,0 +1,1 @@
+export {setUuid,getUuid,setUserDetail} from './action'
