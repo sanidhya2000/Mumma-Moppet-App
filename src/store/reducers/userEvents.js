@@ -1,7 +1,11 @@
 import axios from 'axios'
-import {SETUUID,GETUUID} from '../actions/actionTypes'
+import {SETUUID,GETUUID,SETUSERDETAIL} from '../actions/actionTypes'
 const initialState={
-	uuid:''
+	uuid:'',
+	userName:'',
+	avtaarId:1,
+	babyName:'',
+
 }
 
 
@@ -19,6 +23,15 @@ const reducer = (state=initialState,action)=>{
 			return {
 				...state
 			}
+
+		case SETUSERDETAIL:
+			return{
+				...state,
+				userName : action.userName,
+				babyName : action.babyName,
+				avtaarId : action.avtaarId
+			}
+
 
 		default:
             return state;

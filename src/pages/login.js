@@ -17,7 +17,7 @@ import LoginForm from '../Components/LoginForm'
 import { NavigationActions,StackActions  } from 'react-navigation'
 import axios from 'axios'
 import {connect} from 'react-redux'
-import {setUuid} from '../store/actions/index'
+import {setUuid,setUserDetail} from '../store/actions/index'
 
 
 const initialState={
@@ -66,6 +66,8 @@ onLogin=(email,password)=>{
          if(data.data.uuid!="Invalid Credentials"){
            this.setState({showSpinner:false})
            this.props.setingUuid(data.data.uuid)
+           axios.get(`https://backtestbaby.herokuapp.com/api/dashBoard/userInfo/${data.data.uuid}`)
+           .then(data=>this.props.settingUserDetail(data.data.userName,data.data.babyName,data.data.avtarId));
            ToastAndroid.show('Login Successfull :)', ToastAndroid.SHORT);
         
            //this.props.navigation.navigate('DashBoard')
@@ -155,6 +157,7 @@ const mapStateToProps=state=>{
 const mapDispatchToProps=dispatch=>{
   return{
     setingUuid:(userId)=>dispatch(setUuid(userId)),
+    settingUserDetail:(userName,babyName,avtaarId)=>dispatch(setUserDetail(userName,babyName,avtaarId))
   }
 }
 

@@ -1,1 +1,1 @@
-export {setUuid,getUuid} from './action'
+export {setUuid,getUuid,setUserDetail} from './action'

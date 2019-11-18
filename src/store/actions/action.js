@@ -1,4 +1,4 @@
-import {SETUUID,GETUUID} from './actionTypes'
+import {SETUUID,GETUUID,SETUSERDETAIL} from './actionTypes'
 
 
 
@@ -15,4 +15,12 @@ export const getUuid=()=>{
 	}
 }
 
+export const setUserDetail=(userName,babyName,avtaarId)=>{
+	return{
+		type : SETUSERDETAIL,
+		userName : userName,
+		babyName : babyName,
+		avtaarId : avtaarId
+	}
+}
 

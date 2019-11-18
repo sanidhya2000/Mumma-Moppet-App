@@ -25,7 +25,7 @@ import {
 } from 'react-native';
 import axios from 'axios'
 import {connect} from 'react-redux'
-import {getUuid} from '../store/actions/index'
+import {getUuid,setUserDetail} from '../store/actions/index'
 import RegisterForm from '../Components/RegisterForm';
 import { NavigationActions,StackActions  } from 'react-navigation'
 
@@ -101,6 +101,9 @@ validateInputs=(inputList)=>{
     key: null,
     actions: [NavigationActions.navigate({ routeName: 'DashBoard' })]
 }))
+            axios.get(`https://backtestbaby.herokuapp.com/api/dashBoard/userInfo/${this.props.uuid}`)
+           .then(data=>this.props.settingUserDetail(data.data.userName,data.data.babyName,data.data.avtarId));
+         
             }
             else{
               this.setState({showSpinner:false})
@@ -158,6 +161,7 @@ const mapStateToProps=state=>{
 const mapDispatchToProps=dispatch=>{
   return{
     toGetUuid:(userId)=>dispatch(getUuid()),
+    settingUserDetail:(userName,babyName,avtaarId)=>dispatch(setUserDetail(userName,babyName,avtaarId))
   }
 }
 
