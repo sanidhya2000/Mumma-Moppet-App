@@ -12,6 +12,8 @@ import Login from './pages/login'
 import Register from './pages/register'
 import DashBoard from './pages/DashBoard'
 
+
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -68,7 +70,8 @@ const RootStack=createStackNavigator(
   Login:Login,
   SignUp:SignUp,
   Register:Register,
-  DashBoard:DashBoard
+  DashBoard:DashBoard,
+
 },
 {
   initialRouteName:'SignUp',
