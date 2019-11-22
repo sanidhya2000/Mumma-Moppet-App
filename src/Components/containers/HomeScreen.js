@@ -18,11 +18,14 @@ import {
 
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer } from '@react-navigation/native';
-import OverallGrowth from '../screens/heightWeight.js'
-import BlogsScreen from '../screens/blogs.js'
-import VaccinationScreen from '../screens/vaccination.js'
 import Icon from 'react-native-vector-icons/Ionicons';
 import FunctionalCard from  './functionalityHolderCard'
+import VaccinationTracker from '../DashScreens/vaccinationTracker/VaccinationsTracker.js'
+import HeightTracker from '../DashScreens/heightTracker/HeightTracker.js'
+import WeightTracker from '../DashScreens/weightTracker/WeightTracker.js'
+import BlogsAndFeeds from '../DashScreens/BlogsAndFeeds.js'
+import WelcomeScreen from '../screens/welcomeScreen.js'
+import { createStackNavigator } from 'react-navigation-stack';
 
 const initialState={
    
@@ -44,22 +47,19 @@ static navigationOptions={
     
     }
 
-
+goToVaccines=()=>{
+  console.log(this.props.navigation)
+}
     
 
 	render(){
     console.log(this.props)
 		return(
       <View style={styles.Component}>
-      <Header headerText="Mumma's Moppet" navigation={this.props.navigation}/>
+     
               
-          
-    			<View style={styles.container}>
-            <StatusBar backgroundColor="#ba3f8f" barStyle="light-content" /> 
-            <FunctionalCard key="growth" image="growthTarcker3.png"/>
-            <FunctionalCard key="vaccine" image="vaccine.png"/>
-          </View>
-
+          <AppCont screenProps={this.props.navigation}/>
+    			
 
 
       </View>
@@ -72,44 +72,100 @@ static navigationOptions={
 
 }
 
-const myTabNavigator= createMaterialTopTabNavigator({
-  Home:{
-    screen : BlogsScreen
-  },
-  'Overall Growth':{
-    screen : OverallGrowth
-  },
-  'Vaccinations':{
-    screen:VaccinationScreen
-  }
+// const myTabNavigator= createMaterialTopTabNavigator({
+//   Home:{
+//     screen : BlogsScreen
+//   },<View style={styles.container}>
+           // <StatusBar backgroundColor="#ba3f8f" barStyle="light-content" /> 
+            //<FunctionalCard key="vaccine" image="vaccine" text="Vaccinations"/>
+            //<FunctionalCard key="height" image="height" text="Height Tracker"/>
+            //<FunctionalCard key="weight" image="weight" text="Weight Tracker"/>
+            //<FunctionalCard key="blogs" image="blogs" text="Blogs and Feeds"/>
+          //</View>
+
+//   'Overall Growth':{
+//     screen : OverallGrowth
+//   },
+//   'Vaccinations':{
+//     screen:VaccinationScreen
+//   }
 
   
+// },
+// {
+//   initialRouteName: 'Home',
+//   navigationOptions :{
+//     tabBarVisible : true
+//   },
+//   tabBarOptions: {
+//   labelStyle: {
+//     fontSize: 12,
+//   },
+//   tabStyle: {
+//     width: 120,
+//   },
+//   style: {
+//     backgroundColor: '#bc477b',
+    
+//   },
+// }
+// }
+
+
+// )
+
+// const TabConatiner = createAppContainer(myTabNavigator);
+
+const RootStack=createStackNavigator(
+{
+  Vaccines:{
+    screen:VaccinationTracker,
+    navigationOptions: () => ({
+      title: `Vaccination Tracker`,
+      headerTitleStyle:{color:'#FFF7FB',fontWeight:'bold',fontSize:23},
+      headerTintColor:'#FFF7FB'
+    }),
+  },
+  BlogsAndFeeds:{
+    screen:BlogsAndFeeds,
+    navigationOptions: () => ({
+      title: `Blogs And Feeds`,
+      headerTitleStyle:{color:'#FFF7FB',fontWeight:'bold',fontSize:23},
+      headerTintColor:'#FFF7FB'
+    }),
+  },
+  WelcomeScreen:{
+    screen:WelcomeScreen,
+  },
+  HeightTracker:{
+    screen : HeightTracker,
+    navigationOptions: () => ({
+      title: `Height Tracker`,
+      headerTitleStyle:{color:'#FFF7FB',fontWeight:'bold',fontSize:23},
+      headerTintColor:'#FFF7FB'
+    }),
+  },
+  WeightTracker:{
+    screen:WeightTracker,
+    navigationOptions: () => ({
+      title: `Weight Tracker`,
+      headerTitleStyle:{color:'#FFF7FB',fontWeight:'bold',fontSize:23},
+      headerTintColor:'#FFF7FB'
+    }),
+  },
+
 },
 {
-  initialRouteName: 'Home',
-  navigationOptions :{
-    tabBarVisible : true
-  },
-  tabBarOptions: {
-  labelStyle: {
-    fontSize: 12,
-  },
-  tabStyle: {
-    width: 120,
-  },
-  style: {
-    backgroundColor: '#bc477b',
-    
-  },
-}
+  initialRouteName:'WelcomeScreen',
+  defaultNavigationOptions:{
+    headerStyle:{
+      backgroundColor:'#ba2d65'
+    }
+  }
 }
 
-
-)
-
-const TabConatiner = createAppContainer(myTabNavigator);
-
-
+);
+const AppCont = createAppContainer(RootStack);
 
 const styles=StyleSheet.create({
   Component:{
@@ -135,7 +191,7 @@ const styles=StyleSheet.create({
     marginVertical:15,
     fontSize:20,
     color:'black',
-    fontWeight:"bold"
+    fontWeight:'bold'
 
 
   },

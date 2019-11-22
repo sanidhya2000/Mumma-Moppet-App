@@ -23,37 +23,31 @@ const initialState={
 }
 
 
-class FunctionalCard extends Component{
+const FunctionalCard =(props)=>{
 
-	constructor(props){
-		super(props);
-		this.state=initialState;
-	}
-
-static navigationOptions={
-    
+    const state={
+      'vaccine':require('../../assets/san12.png'),
+      'height' :require('../../assets/san.png'),
+      'weight' :require('../../assets/san1.png'),
+      'blogs'  :require('../../assets/san1.png')
     }
 
-
-    
-
-	render(){
-    console.log(this.props.image)
 		return(
 
 			 <View style={styles.container}>
-          
-        <View style={styles.iconHolder}>
-          <Image style={styles.imageIcon} source={require(`../../assets/growthTracker3.png`)}/>
-        </View>
+        
+        <TouchableOpacity onPress={props.pressEvent}>  
+          <View style={styles.iconHolder}>
+            <Image style={styles.imageIcon} source={state[props.image]}/>
+          </View>
 
-        <View style={styles.textConatiner}>
-          <Text style={styles.textMain}> Sanidhya </Text>
-        </View>
-
+          <View style={styles.textConatiner}>
+            <Text style={styles.textMain}> {props.text} </Text>
+          </View>
+        </TouchableOpacity>
       </View>
 			)
-	}
+	
 
 
 }
@@ -69,11 +63,9 @@ const styles=StyleSheet.create({
     },
 
     iconHolder:{
-      borderWidth:2,
       width:150,
       height:150,
       borderRadius:100,
-      backgroundColor:'#ffab00'
     },
 
     textConatiner:{
@@ -85,13 +77,15 @@ const styles=StyleSheet.create({
     },
     textMain:{
       textAlign:'center',
+      fontWeight:'bold',
+      fontSize:18
     },
 
     imageIcon:{
-      width:100,
-      height:110,
-      marginLeft:15,
-      marginTop:10
+      width:220,
+      height:220,
+      marginLeft:-34,
+      marginTop:-32
     }
 
 })

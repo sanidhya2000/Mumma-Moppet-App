@@ -103,7 +103,17 @@ validateInputs=(inputList)=>{
 }))
             axios.get(`https://backtestbaby.herokuapp.com/api/dashBoard/userInfo/${this.props.uuid}`)
            .then(data=>this.props.settingUserDetail(data.data.userName,data.data.babyName,data.data.avtarId));
-         
+            
+            axios.post('https://backtestbaby.herokuapp.com/api/vaccination',{
+              uuid:this.props.uuid,
+              birthDate:inputs.dateOfBirth
+            })
+            .catch(err=>{
+              console.log(err);
+              ToastAndroid.show('Registartion UnSuccessfull :(!!', ToastAndroid.SHORT);
+              this.props.navigation.navigate('SignUp')
+            })
+
             }
             else{
               this.setState({showSpinner:false})
