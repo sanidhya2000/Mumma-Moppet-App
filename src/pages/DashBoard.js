@@ -18,6 +18,7 @@ import {
 import { createDrawerNavigator, DrawerItems, DrawerNavigation  } from 'react-navigation-drawer';
 import HomeScreen from '../Components/containers/HomeScreen'
 import SettingScreen from '../Components/containers/SettingScreen'
+import NotesHolder from '../Components/DashScreens/notesScreen/notesHolder.js'
 import { createAppContainer } from '@react-navigation/native';
 import {connect} from 'react-redux'
 
@@ -89,6 +90,9 @@ const myApp= createDrawerNavigator({
   },
   Settings:{
     screen : SettingScreen
+  },
+  Notes:{
+    screen : NotesHolder
   }
 }
 ,

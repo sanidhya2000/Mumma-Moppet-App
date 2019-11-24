@@ -17,6 +17,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer } from '@react-navigation/native';
 import WeightView from './weightView.js'
 import  WeightGraph from './weightGraph.js'
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class WeightTracker extends Component{
 
@@ -64,10 +65,20 @@ const styles = StyleSheet.create({
 const myTabNavigator= createBottomTabNavigator(
 {
   Entries:{
-    screen : WeightView
+    screen : WeightView,
+     navigationOptions:{
+      tabBarLabel : 'Feed Data',
+      tabBarIcon:({tintColor})=>(
+        <Icon name="md-create" size={30} color={tintColor}/>)
+    }
   },
   'Graph':{
-    screen : WeightGraph
+    screen : WeightGraph,
+    navigationOptions:{
+      tabBarLabel : 'Graph',
+      tabBarIcon:({tintColor})=>(
+        <Icon name="md-stats" size={30} color={tintColor}/>)
+    }
   }
   
 },
@@ -75,17 +86,27 @@ const myTabNavigator= createBottomTabNavigator(
   initialRouteName: 'Entries',
 
  tabBarOptions: {
- 	activeTintColor: '#ffffff',
- 	inactiveTintColor :'black',
+  activeTintColor: '#ba2d65',
+  inactiveTintColor :'grey',
   labelStyle: {
-    fontSize: 20,
-    paddingBottom:10
+    fontSize: 17
   },
   tabStyle: {
-    width: 120,
+    
   },
   style: {
-    backgroundColor: '#bc477b',
+   borderTopWidth:0,
+    
+    borderRadius:25,
+   
+    height:60,
+    shadowColor:'black',
+        shadowOffset:{width:10,height:20},
+        shadowOpacity:0.2,
+        elevation:4,
+        marginBottom:8,
+        marginLeft:10,
+        marginRight:10,
     
   },
 

@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import SettingCard from '../settingsCard/settingCard.js'
 
 const initialState={
    
@@ -46,9 +46,7 @@ static navigationOptions={
           <Header headerText="Settings" navigation={this.props.navigation}/>
           <View style={styles.container}>
             <StatusBar backgroundColor="#ba3f8f" barStyle="light-content" /> 
-                <View style={styles.dash}>
-               <Text style={styles.dashText}>SettingsScreen </Text>
-               </View>
+                <SettingCard/>
               </View>
       </View>
 			)
@@ -66,9 +64,7 @@ const styles=StyleSheet.create({
   },
   container : {
     backgroundColor : '#ffc1e3',
-    flex:1,
-    alignItems:'center',
-    justifyContent:'center'
+    
   },
   dash:{
     flexGrow:1,
