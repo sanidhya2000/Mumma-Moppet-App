@@ -3,13 +3,13 @@ import {View,StyleSheet,Text,TextInput,Image,TouchableOpacity,ToastAndroid} from
 import Icon from 'react-native-vector-icons/Feather';
 
 const initialState={
-	height:"",
+	weight:"",
 	done:{image:require('../../../assets/correctUse.png'),style:{height:100,width:120}},
 	submit:{image:require('../../../assets/submit.png'),style:{height:100,width:100}},
 	notAllowed:{image:require('../../../assets/stp.png'),style:{height:130,width:130}}
 }
 
-class HeightCard extends Component {
+class WeightCard extends Component {
 	constructor(props){
 		super(props);
 		this.state = initialState;
@@ -17,26 +17,26 @@ class HeightCard extends Component {
 	}
 
 	componentDidMount(){
-		this.setState({height:this.props.heightFeed.toString()})
+		this.setState({weight:this.props.weightFeed.toString()})
 	}
 
-	heightHandler=(value)=>{
+	weightHandler=(value)=>{
 		
-		this.setState({height:value})
+		this.setState({weight:value})
 	}
 
 	changeStatus=()=>{
 		
-		if(this.state.height != "" && this.state.height!="0")
-			{this.props.pressEvent(this.props.sno,this.state.height)}
+		if(this.state.weight != "" && this.state.weight!="0")
+			{this.props.pressEvent(this.props.sno,this.state.weight)}
 		else{
-			ToastAndroid.show('Enter Valid Height!!', ToastAndroid.SHORT);
-			this.setState({height:""})
+			ToastAndroid.show('Enter Valid Weight!!', ToastAndroid.SHORT);
+			this.setState({weight:""})
 		}
 	}
 
 	render(){
-		console.log(this.state.height)
+		console.log(this.state.weight)
 		return(
 				<View style={styles.component}>
 					<View style={styles.container}>
@@ -50,18 +50,19 @@ class HeightCard extends Component {
 						</View>
 						<View style={styles.section}>
 
-								<View style={styles.heightEntry}>
-								 	<Image style={{height:56,width:35,marginRight:5}}source={require('../../../assets/height2.png')}/>
-									<View style={styles.heightBox}>
+								<View style={styles.weightEntry}>
+								 	<Image style={{height:45,width:45,marginRight:5}}source={require('../../../assets/weight.png')}/>
+									<View style={styles.weightBox}>
 										<TextInput style={styles.inputBox} underlineColorAndroid='rgba(0,0,0,0)' 
-								        placeholder="Height!!"
+								        placeholder="Weight!!"
+								        
 								        placeholderTextColor='rgba(0,0,0,0.6)'
-								        value={this.state.height}
-								        onChangeText={this.heightHandler}
+								        value={this.state.weight}
+								        onChangeText={this.weightHandler}
 								        editable={this.props.isEditable}
 								        />
-								        <Text style={{marginLeft:6,fontSize:20}}>Cm</Text>
-								     </View>
+								        <Text style={{marginLeft:6,fontSize:20}}>Kg</Text>
+							        </View>
 								</View>
 
 								<View style={styles.submitData}>
@@ -159,14 +160,14 @@ const styles = StyleSheet.create({
   	justifyContent:'center',
   	alignItems:'center'
   },
-  heightEntry:{
+  weightEntry:{
   	//borderWidth:2,
   	width:215,
   	alignItems:'center',
   	justifyContent:'center',
   	flexDirection:'row'
   },
-  heightBox:{
+  weightBox:{
   	//borderWidth:2,
   	backgroundColor:'rgba(255,255,255,0.3)',
     borderRadius: 5,
@@ -181,4 +182,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default HeightCard
+export default WeightCard

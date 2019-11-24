@@ -26,10 +26,10 @@ const initialState={
 const FunctionalCard =(props)=>{
 
     const state={
-      'vaccine':require('../../assets/san12.png'),
-      'height' :require('../../assets/san.png'),
-      'weight' :require('../../assets/san1.png'),
-      'blogs'  :require('../../assets/san1.png')
+      'vaccine':{image:require('../../assets/vaccinea.png'),style:{width:220,height:220,marginLeft:-30,marginTop:-32}},
+      'height' :{image:require('../../assets/heightTrack.png'),style:{width:200,height:200,marginLeft:-26,marginTop:-28}},
+      'weight' :{image:require('../../assets/weightTrack.png'),style:{width:190,height:190,marginLeft:-20,marginTop:-22}},
+      'blogs'  :{image:require('../../assets/weightTrack.png'),style:{width:185,height:185,marginLeft:-20,marginTop:-22}}
     }
 
 		return(
@@ -38,7 +38,7 @@ const FunctionalCard =(props)=>{
         
         <TouchableOpacity onPress={props.pressEvent}>  
           <View style={styles.iconHolder}>
-            <Image style={styles.imageIcon} source={state[props.image]}/>
+            <Image style={state[props.image].style} source={state[props.image].image}/>
           </View>
 
           <View style={styles.textConatiner}>
@@ -59,7 +59,8 @@ const styles=StyleSheet.create({
     container:{
       marginLeft:20,
       marginRight:10,
-      marginBottom:20
+      marginBottom:20,
+      //borderWidth:1
     },
 
     iconHolder:{
