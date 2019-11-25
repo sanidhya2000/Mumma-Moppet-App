@@ -1,6 +1,4 @@
 import React,{Component} from 'react'
-import Header from './header.js'
-import SettingScreen from './SettingScreen'
 import {
   Image,
   SafeAreaView,
@@ -14,42 +12,29 @@ import {
   FlatList,
   TouchableOpacity,
   ToastAndroid,
-} from 'react-native'; 
+} from 'react-native';
 
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import FunctionalCard from  './functionalityHolderCard'
-import VaccinationTracker from '../DashScreens/vaccinationTracker/VaccinationsTracker.js'
-import HeightTracker from '../DashScreens/heightTracker/HeightTracker.js'
-import WeightTracker from '../DashScreens/weightTracker/WeightTracker.js'
-import BlogHolder from '../DashScreens/blogsAndFeeds/blogHolder.js'
-import WelcomeScreen from '../screens/welcomeScreen.js'
 import { createStackNavigator } from 'react-navigation-stack';
+import BlogsAndFeedsHome from './BlogsAndFeedsHome.js';
+import AddBlogs from './AddBlogs.js'
 
 const initialState={
    
 }
 
 
-class HomeScreen extends Component{
+class BlogHolder extends Component{
 
 	constructor(props){
 		super();
 		this.state=initialState;
 	}
 
-static navigationOptions={
-      drawerLabel: 'DashBoard',
-      drawerIcon: ({ tintColor }) => (
-      <Icon style={{width:40}} size={40}  name="md-home" color='#ba2d65'/>
-    ),
-    
-    }
 
-goToVaccines=()=>{
-  console.log(this.props.navigation)
-}
+
     
 
 	render(){
@@ -118,45 +103,20 @@ goToVaccines=()=>{
 
 const RootStack=createStackNavigator(
 {
-  Vaccines:{
-    screen:VaccinationTracker,
+  AddBlogs:{
+    screen:AddBlogs,
     navigationOptions: () => ({
-      title: `Vaccination Tracker`,
       headerTitleStyle:{color:'#FFF7FB',fontWeight:'bold',fontSize:23},
       headerTintColor:'#FFF7FB'
     }),
   },
-  BlogsAndFeeds:{
-    screen:BlogHolder,
-    navigationOptions: () => ({
-      title: `Blogs And Feeds`,
-      headerTitleStyle:{color:'#FFF7FB',fontWeight:'bold',fontSize:23},
-      headerTintColor:'#FFF7FB'
-    }),
+  HomeScreen:{
+    screen:BlogsAndFeedsHome,
   },
-  WelcomeScreen:{
-    screen:WelcomeScreen,
-  },
-  HeightTracker:{
-    screen : HeightTracker,
-    navigationOptions: () => ({
-      title: `Height Tracker`,
-      headerTitleStyle:{color:'#FFF7FB',fontWeight:'bold',fontSize:23},
-      headerTintColor:'#FFF7FB'
-    }),
-  },
-  WeightTracker:{
-    screen:WeightTracker,
-    navigationOptions: () => ({
-      title: `Weight Tracker`,
-      headerTitleStyle:{color:'#FFF7FB',fontWeight:'bold',fontSize:23},
-      headerTintColor:'#FFF7FB'
-    }),
-  },
-
+  
 },
 {
-  initialRouteName:'WelcomeScreen',
+  initialRouteName:'HomeScreen',
   defaultNavigationOptions:{
     headerStyle:{
       backgroundColor:'#ba2d65'
@@ -207,4 +167,4 @@ const styles=StyleSheet.create({
 
 
 
-export default HomeScreen;
+export default BlogHolder;
