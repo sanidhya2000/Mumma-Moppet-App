@@ -20,7 +20,7 @@ class BlogsAndFeeds extends Component{
 	constructor(props){
 		super(props);
 	}
-
+	
 	render(){
 		return(
 
@@ -38,7 +38,7 @@ class BlogsAndFeeds extends Component{
 const styles = StyleSheet.create({
 
 	container :{
-		borderWidth : 2
+		//borderWidth : 2
 	}
 
 })
