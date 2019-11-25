@@ -1,11 +1,12 @@
 import React,{Component} from 'react'
-import {View,Text,ScrollView,StyleSheet,ToastAndroid} from 'react-native'
+import {View,Text,ScrollView,StyleSheet,ToastAndroid,RefreshControl} from 'react-native'
 import WeightCard from './weightCard.js'
 import axios from 'axios'
 import {connect} from 'react-redux'
 
 const initialState={
-	weightData:[]
+	weightData:[],
+	refreshing:false
 }
 
 class WeightView extends Component{
@@ -49,6 +50,15 @@ class WeightView extends Component{
 		ToastAndroid.show('Already Done!!', ToastAndroid.SHORT);
 	}
 
+	onRefresh = () => {
+	    this.setState({refreshing : true})
+	   	axios.get(`https://backtestbaby.herokuapp.com/api/overallGrowth/${this.props.uuid}`)
+		.then(data=>{
+			this.setState({weightData:data.data,refreshing:false})
+		})
+	    
+  	}
+
 	render(){
 		console.log(this.state.weightData)
 		let WeightCardList = this.state.weightData.map((d,i)=>{
@@ -73,7 +83,9 @@ class WeightView extends Component{
 		console.log(WeightCardList)
 
 		return(
-				<ScrollView >
+				<ScrollView refreshControl={
+			          <RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />
+			        }>
 					{WeightCardList}
 				</ScrollView>
 

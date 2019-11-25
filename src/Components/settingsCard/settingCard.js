@@ -7,8 +7,10 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
+  RefreshControl,
   ToastAndroid,
-  ActivityIndicator} from 'react-native'
+  ActivityIndicator,
+ScrollView} from 'react-native'
 import DateTimePicker from "react-native-modal-datetime-picker";
 import Icon from 'react-native-vector-icons/Ionicons';
 import ModalDropdown from 'react-native-modal-dropdown';
@@ -19,7 +21,7 @@ import {connect} from 'react-redux'
 import {getUuid,setUserDetail} from '../../store/actions/index'
 
 const initialState={
-
+	refreshing:false,
   isDateTimePickerVisible:false,
   modalVisible:false,
   selectedInputs:{
@@ -48,7 +50,7 @@ class SettingCard extends Component{
 	}
 
 	componentDidMount(){
-		axios.get('https://backtestbaby.herokuapp.com/api/register/d6895b94-be62-4dcb-b891-c663be926fd9')
+		axios.get(`https://backtestbaby.herokuapp.com/api/register/${this.props.uuid}`)
 		.then(data=>{
 			if(data.data.data!=undefined){
 				let temp = this.state.selectedInputs;
@@ -64,6 +66,27 @@ class SettingCard extends Component{
 			}
 		})
 	}
+
+	onRefresh = () => {
+    this.setState({refreshing : true})
+    axios.get(`https://backtestbaby.herokuapp.com/api/register/${this.props.uuid}`)
+		.then(data=>{
+			if(data.data.data!=undefined){
+				let temp = this.state.selectedInputs;
+				temp.babyName = data.data.data.baby_name;
+				temp.fathersName = data.data.data.fathers_name;
+				temp.mothersName = data.data.data.mothers_name;
+				temp.dateOfBirth = this.formatDate(data.data.data.date_of_birth);
+				temp.gender = genderOptions[genderReverse[data.data.data.gender]];
+				temp.mobileNumber = data.data.data.mobile_number;
+				temp.city = data.data.data.city;
+				temp.avtarLink = data.data.data.avtar_link;
+				this.setState({selectedInputs:temp,refreshing:false})
+			}
+		})
+    
+    
+  	}
 
 	babyNameHandler=(value)=>{
     let temp=this.state.selectedInputs;
@@ -234,7 +257,10 @@ class SettingCard extends Component{
 	render(){
 		console.log(this.state)
 		return(
-				<View style={styles.conatiner}>
+				<ScrollView style={styles.conatiner}
+					refreshControl={
+				          <RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />
+				        }>
 					<View style={styles.header}>
 						
 						<View style={styles.avtaarSelection}>
@@ -354,7 +380,7 @@ class SettingCard extends Component{
 							        </TouchableOpacity>
 						      	}
 					</View>
-				</View>
+				</ScrollView>
 
 			)
 	}

@@ -1,12 +1,20 @@
 import React,{Component} from 'react'
-import {View,Text,ScrollView,StyleSheet,ToastAndroid} from 'react-native'
+import {View,Text,ScrollView,StyleSheet,ToastAndroid,RefreshControl} from 'react-native'
 import HeightCard from './heightCard.js'
 import axios from 'axios'
 import {connect} from 'react-redux'
 
 const initialState={
-	heightData:[]
+	heightData:[],
+	refreshing:false
 }
+
+function wait(timeout) {
+  return new Promise(resolve => {
+    setTimeout(resolve, timeout);
+  });
+}
+
 
 class HeightView extends Component{
 	constructor(props){
@@ -49,6 +57,15 @@ class HeightView extends Component{
 		ToastAndroid.show('Already Done!!', ToastAndroid.SHORT);
 	}
 
+	onRefresh = () => {
+    this.setState({refreshing : true})
+    axios.get(`https://backtestbaby.herokuapp.com/api/overallGrowth/${this.props.uuid}`)
+		.then(data=>{
+			this.setState({heightData:data.data})
+		})
+    wait(2000).then(() => this.setState({refreshing : false}));
+  	}
+
 	render(){
 		console.log(this.state.heightData)
 		let heightCardList = this.state.heightData.map((d,i)=>{
@@ -74,7 +91,9 @@ class HeightView extends Component{
 		console.log(heightCardList)
 
 		return(
-				<ScrollView >
+				<ScrollView refreshControl={
+			          <RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />
+			        }>
 					{heightCardList}
 				</ScrollView>
 

@@ -20,7 +20,8 @@ import {
   Button,
   FlatList,
   TouchableOpacity,
-  ToastAndroid
+  ToastAndroid,
+  AsyncStorage
 } from 'react-native';
 import axios from 'axios'
 import {connect} from 'react-redux'
@@ -61,6 +62,17 @@ validateInputs=(email,name,password)=>{
 
 }
 
+makeUserLoggedIn = async()=>{
+  try {
+    await AsyncStorage.setItem('UserLoggedIn',"true");
+    await AsyncStorage.setItem('uuid',this.props.uuid);
+    console.log("done")
+  } catch (error) {
+    console.log(error)
+    // Error saving data
+  }
+}
+
 
 onSignUp=(email,name,password)=>{
 
@@ -77,6 +89,7 @@ onSignUp=(email,name,password)=>{
         if(data.data.exists==false){
           this.setState({showSpinner:false})
           this.props.setingUuid(data.data.uuid)
+          this.makeUserLoggedIn()
           this.props.navigation.navigate('Register')
         }
         else{
