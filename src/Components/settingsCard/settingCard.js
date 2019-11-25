@@ -17,6 +17,7 @@ import Modal from "react-native-modal";
 import AvtaarCard from '../AvtaarCards.js'
 import {connect} from 'react-redux'
 import {getUuid,setUserDetail} from '../../store/actions/index'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const initialState={
 
@@ -234,6 +235,14 @@ class SettingCard extends Component{
 	render(){
 		console.log(this.state)
 		return(
+
+      <KeyboardAwareScrollView
+        
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={styles.container}
+        scrollEnabled={true}
+      >
+
 				<View style={styles.conatiner}>
 					<View style={styles.header}>
 						
@@ -356,6 +365,8 @@ class SettingCard extends Component{
 					</View>
 				</View>
 
+        </KeyboardAwareScrollView>
+
 			)
 	}
 
@@ -364,26 +375,25 @@ class SettingCard extends Component{
 
 const styles = StyleSheet.create({
 	conatiner:{
-		
-		
-		//borderWidth : 2,
+    //borderWidth : 2,
+    height: 680
 	},
 	header:{
 		//borderWidth : 2,
-		height : 140,
+		height : 150,
 		flexDirection :'row',
 		justifyContent:'center',
 		alignItems:'center'
 	},
 	section:{
 		//borderWidth : 2,
-		height : 370,
+		height : 400,
 		justifyContent:'center',
 		alignItems:'center'
 	},
 	footer:{
 		//borderWidth : 2,
-		height : 50,
+		height : 80,
 		justifyContent:'center',
 		alignItems:'center'
 	},
@@ -508,7 +518,8 @@ const styles = StyleSheet.create({
   Inputhandler:{
   	flexDirection:'row',
   	justifyContent:'center',
-		alignItems:'center'
+    alignItems:'center',
+    marginTop:'1%'
   }
 })
 
