@@ -394,7 +394,7 @@ class SettingCard extends Component{
 						      	}
 					</View>
 				</ScrollView>
-
+                    </View>
         </KeyboardAwareScrollView>
 
 			)
