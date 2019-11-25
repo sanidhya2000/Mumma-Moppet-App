@@ -1,13 +1,35 @@
 import React,{Component} from 'react'
-import {StyleSheet,View,Text, Image} from 'react-native'
+import {
+    StyleSheet,
+    View,
+    Text,
+    Image,
+    TextInput,
+    TouchableOpacity,
+    FlatList,
+    ActivityIndicator,
+    ToastAndroid } from 'react-native'
+
+import { WebView } from 'react-native-webview';
+import { ScrollView } from 'react-native-gesture-handler';
 
 class BlogCard extends Component{
     constructor(props){
         super(props)
     }
+
+
+
+    Full=()=>{
+        console.log(this.props.weblink)
+        this.props.openWeb(this.props.weblink);
+    }
+
     render(){
         return(
+
             <View style={styles.container}>
+
 
 
                 <View style={styles.head}>
@@ -22,9 +44,18 @@ class BlogCard extends Component{
                 <View style={styles.left}>
                     <View style={styles.image}>
                         <Image source={{uri:this.props.imageLink}} style={{flex: 1,width: null,height: null,resizeMode:'contain'}}/>
-
                         
+                    </View>
 
+                    <View style={styles.see}>
+
+                    {this.props.showSpinner ? 
+                    <ActivityIndicator style={styles.spinner} size="small" color="#ffffff" />:
+                    <TouchableOpacity style={styles.button} onPress={this.Full}>
+                    <Text style={styles.buttonText}>Web View</Text>
+                    </TouchableOpacity>
+        }
+                        
                     </View>
 
 
@@ -33,12 +64,19 @@ class BlogCard extends Component{
                     
 
                     <View style={styles.subTitle}>
-        <Text style={{color:'white',fontSize:17}}>{this.props.subTitle}</Text>
+                    <ScrollView>
+        <Text style={{color:'#CDCBFE',fontSize:17}}>{this.props.subTitle}</Text>
+        </ScrollView>
                     </View>
 
+       
                     <View style={styles.conTitle}>
+                    <ScrollView>
         <Text style={{color:'white'}}>{this.props.content}</Text>
+                    </ScrollView>
                     </View>
+
+                    
 
                     <View style={styles.name}>
                         <View style={styles.by}>
@@ -122,11 +160,35 @@ const styles = StyleSheet.create({
 
     image:{
         //borderWidth:2,
-        marginTop:10,
+        marginTop:5,
         marginLeft:5,
         width:160,
-        height:220
+        height:180
     },
+
+    buttonText:{
+        fontSize:18,
+        fontWeight:'500',
+        color:'#ffffff',
+        textAlign:'center',
+    
+      },
+      button:{
+        width:150,
+        backgroundColor:'#ba2d65',
+        borderRadius: 25,
+        color:'#ffffff',
+        marginVertical:10,
+        paddingVertical:12
+      },
+      spinner:{
+        width:150,
+        borderRadius: 25,
+        color:'#ffffff',
+        marginVertical:10,
+        paddingVertical:12,
+        backgroundColor:'#ba2d65'
+      },
 
     name:{
         //borderWidth:2,
@@ -140,7 +202,7 @@ const styles = StyleSheet.create({
 
     by:{
         //borderWidth:2,
-        marginTop:5,
+        marginTop:-10,
         marginLeft:3,
         width:30,
         height:25
@@ -148,7 +210,7 @@ const styles = StyleSheet.create({
 
     auther:{
         //borderWidth:2,
-        marginTop:5,
+        marginTop:-10,
         marginLeft:5,
         width:110,
         height:25
@@ -164,27 +226,20 @@ const styles = StyleSheet.create({
 
     subTitle:{
         //borderWidth:2,
-        marginTop:15,
+        marginTop:8,
         marginLeft:5,
         width:190,
-        height:30
+        height:40
     },
 
     conTitle:{
         //borderWidth:2,
-        marginTop:20,
+        marginTop:10,
         marginLeft:5,
         width:190,
-        height:110
+        height:150
     },
 
-    see:{
-        //borderWidth:2,
-        marginTop:10,
-        marginLeft:30,
-        width:90,
-        height:30
-    },
 })
 
 export default BlogCard;
