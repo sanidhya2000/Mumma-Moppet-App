@@ -29,7 +29,7 @@ const FunctionalCard =(props)=>{
       'vaccine':{image:require('../../assets/vaccinea.png'),style:{width:220,height:220,marginLeft:-30,marginTop:-32}},
       'height' :{image:require('../../assets/heightTrack.png'),style:{width:200,height:200,marginLeft:-26,marginTop:-28}},
       'weight' :{image:require('../../assets/weightTrack.png'),style:{width:190,height:190,marginLeft:-20,marginTop:-22}},
-      'blogs'  :{image:require('../../assets/weightTrack.png'),style:{width:185,height:185,marginLeft:-20,marginTop:-22}}
+      'blogs'  :{image:require('../../assets/book.png'),style:{width:185,height:185,marginLeft:-20,marginTop:-22}}
     }
 
 		return(

@@ -193,15 +193,7 @@ const initialState={
           </View>
 
 
-          <View style={styles.Inputhandler}>
-          <Icon name="md-clipboard" size={30} color="rgba(0,0,0,0.7)"/> 
-          <TextInput style={styles.inputBoxs} underlineColorAndroid='rgba(0,0,0,0)' 
-          placeholder="Blog Content"
-          placeholderTextColor='#ffffff'
-          value={this.state.blogContent} 
-          onChangeText={this.blogContentHandler}
-          />
-          </View>
+         
 
 
           <View style={styles.Inputhandler}>
@@ -218,14 +210,25 @@ const initialState={
           <View style={styles.Inputhandler}>
           <Icon name="md-videocam" size={30} color="rgba(0,0,0,0.7)"/> 
           <TextInput style={styles.inputBox} underlineColorAndroid='rgba(0,0,0,0)' 
-          placeholder="Video Link"
+          placeholder="Web Link"
           placeholderTextColor='#ffffff'
           value={this.state.VideoLink} 
           onChangeText={this.videoLinkHandler}
           />
           </View>
 
-          
+
+          <View style={styles.Inputhandler}>
+          <Icon name="md-clipboard" size={30} color="rgba(0,0,0,0.7)"/> 
+          <TextInput style={styles.inputBoxs} underlineColorAndroid='rgba(0,0,0,0)' 
+          placeholder="Blog Content"
+          placeholderTextColor='#ffffff'
+          value={this.state.blogContent} 
+          onChangeText={this.blogContentHandler}
+          />
+          </View>
+
+{/*           
           <View style={styles.Inputhandler}>
           <Icon name="md-text" size={30} color="rgba(0,0,0,0.7)"/> 
           <TextInput style={styles.inputBoxs} multiline underlineColorAndroid='rgba(0,0,0,0)' 
@@ -234,7 +237,7 @@ const initialState={
           value={this.state.description} 
           onChangeText={this.DescriptionHandler}
           />
-          </View>
+          </View> */}
           
 
   
@@ -279,7 +282,7 @@ const initialState={
       justifyContent:'center',
       alignItems:'center',
       backgroundColor : '#f48fb1',
-      height : 650,
+      
     },
     inputBox:{
       width:300,//320max
@@ -288,7 +291,7 @@ const initialState={
       paddingHorizontal:16,
       fontSize:16,
       color:'#ffffff',
-      marginVertical:5,
+      marginVertical:10,
       marginLeft:10
   
     },
@@ -302,7 +305,7 @@ const initialState={
         paddingHorizontal:16,
         fontSize:16,
         color:'#ffffff',
-        marginVertical:5,
+        marginVertical:8,
         marginLeft:10,
       },
 

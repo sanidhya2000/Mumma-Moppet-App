@@ -20,6 +20,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { createStackNavigator } from 'react-navigation-stack';
 import BlogsAndFeedsHome from './BlogsAndFeedsHome.js';
 import AddBlogs from './AddBlogs.js'
+import WebCard from './webView.js';
 
 const initialState={
    
@@ -105,6 +106,13 @@ const RootStack=createStackNavigator(
 {
   AddBlogs:{
     screen:AddBlogs,
+    navigationOptions: () => ({
+      headerTitleStyle:{color:'#FFF7FB',fontWeight:'bold',fontSize:23},
+      headerTintColor:'#FFF7FB'
+    }),
+  },
+  WebCard:{
+    screen:WebCard,
     navigationOptions: () => ({
       headerTitleStyle:{color:'#FFF7FB',fontWeight:'bold',fontSize:23},
       headerTintColor:'#FFF7FB'
