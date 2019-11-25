@@ -171,6 +171,10 @@ const initialState={
       >
 
         <View style={styles.container}>
+
+        
+        <Image style={styles.images} source={require('../../../assets/bok.png')}/>
+
           
           <View style={styles.Inputhandler}>
           <Icon name="md-bookmarks" size={30} color="rgba(0,0,0,0.7)"/> 
@@ -284,6 +288,20 @@ const initialState={
       backgroundColor : '#f48fb1',
       
     },
+
+    images:{
+      width:130,
+      height : 130,
+      marginTop: -20
+    },
+    
+    logoText:{
+      marginVertical:15,
+      fontSize:20,
+      color:'rgba(255,255,255,0.7)',
+      fontWeight:"bold"
+    },
+    
     inputBox:{
       width:300,//320max
       backgroundColor:'rgba(255,255,255,0.3)',
