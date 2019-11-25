@@ -11,7 +11,8 @@ import {
   Button,
   FlatList,
   TouchableOpacity,
-  ToastAndroid
+  ToastAndroid,
+  AsyncStorage
 } from 'react-native';
 import LoginForm from '../Components/LoginForm'
 import { NavigationActions,StackActions  } from 'react-navigation'
@@ -52,6 +53,17 @@ validateInputs=(email,password)=>{
 
 }
 
+makeUserLoggedIn = async()=>{
+	try {
+    await AsyncStorage.setItem('UserLoggedIn',"true");
+    await AsyncStorage.setItem('uuid',this.props.uuid);
+    console.log("done")
+  } catch (error) {
+  	console.log(error)
+    // Error saving data
+  }
+}
+
 onLogin=(email,password)=>{
 
       this.setState({showSpinner:true})    
@@ -67,7 +79,16 @@ onLogin=(email,password)=>{
            this.setState({showSpinner:false})
            this.props.setingUuid(data.data.uuid)
            axios.get(`https://backtestbaby.herokuapp.com/api/dashBoard/userInfo/${data.data.uuid}`)
-           .then(data=>this.props.settingUserDetail(data.data.userName,data.data.babyName,data.data.avtarId));
+           .then(data=>{
+           	if(data.data.babyName == undefined){
+           		this.props.navigation.navigate('Register');
+  		        ToastAndroid.show('First Complete Your Registration :)', ToastAndroid.SHORT);
+           	}
+           	else{
+           		this.makeUserLoggedIn()
+           		this.props.settingUserDetail(data.data.userName,data.data.babyName,data.data.avtarId)}
+
+           });
            ToastAndroid.show('Login Successfull :)', ToastAndroid.SHORT);
         
            //this.props.navigation.navigate('DashBoard')

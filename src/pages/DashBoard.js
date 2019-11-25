@@ -12,7 +12,8 @@ import {
   FlatList,
   TouchableOpacity,
   ToastAndroid,
-  Image
+  Image,
+  AsyncStorage
 } from 'react-native';
 
 import { createDrawerNavigator, DrawerItems, DrawerNavigation  } from 'react-navigation-drawer';
@@ -21,6 +22,7 @@ import SettingScreen from '../Components/containers/SettingScreen'
 import NotesHolder from '../Components/DashScreens/notesScreen/notesHolder.js'
 import { createAppContainer } from '@react-navigation/native';
 import {connect} from 'react-redux'
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const initialState={
    
@@ -45,15 +47,23 @@ static navigationOptions={
     }
 
 
+  // componentDidMount(){
+  //  console.log(this.props)
+  //   if(this.props.babyName== undefined){
+  //           this.props.navigation.navigate('Register');
+  //           ToastAndroid.show('First Complete Your Registration :)', ToastAndroid.SHORT);
+        
+  //   }  
+  // }
 
 	render(){
     userDetail.userName=this.props.userName
     userDetail.avtaarId=this.props.avtaarId
     userDetail.babyName=this.props.babyName
+    console.log(userDetail)
 		return(
 
-			
-            <AppContainer/>
+            <AppContainer screenProps={this.props.navigation}/>
       		
 
 			)
@@ -63,9 +73,18 @@ static navigationOptions={
 }
 
 const DrawerContent = (props) => {
-  console.log(userDetail)
+  
+  const logOut =async()=>{
+    console.log("myprops",props)
+    await AsyncStorage.setItem('UserLoggedIn',"false");
+    const UserLoggedIn = await AsyncStorage.getItem('UserLoggedIn');
+    props.screenProps.navigate('SignUp');
+      console.log(UserLoggedIn)
+  }
+  
+
   return(
-  <View>
+  <View style={{flex:1}}>
     <View
       style={{
         backgroundColor: '#ba2d65',
@@ -80,6 +99,13 @@ const DrawerContent = (props) => {
       </View>
     </View>
     <DrawerItems {...props} />
+    <TouchableOpacity onPress={logOut} style={{height:50,flex:1,marginBottom:10,justifyContent: 'flex-end',position:'absolute',bottom:0,left:0,width:'100%'}}>
+    <View style={{flexDirection:'row',alignItems:'center'}}>
+      <Icon name="md-power" size={35} color="#ba2d65" style={{marginLeft:10}}/>
+      <Text style={{marginLeft:20,fontWeight:'bold',fontSize:15,textAlign:'center'}}>Logout</Text>
+      </View>
+    </TouchableOpacity>
+      
   </View>);
 }
 
