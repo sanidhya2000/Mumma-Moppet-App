@@ -65,14 +65,14 @@ class BlogCard extends Component{
 
                     <View style={styles.subTitle}>
                     <ScrollView>
-        <Text style={{color:'#CDCBFE',fontSize:17}}>{this.props.subTitle}</Text>
+        <Text style={{color:'#5a53df',fontSize:17}}>{this.props.subTitle}</Text>
         </ScrollView>
                     </View>
 
        
                     <View style={styles.conTitle}>
                     <ScrollView>
-        <Text style={{color:'white'}}>{this.props.content}</Text>
+        <Text style={{color:'#CDCBFE'}}>{this.props.content}</Text>
                     </ScrollView>
                     </View>
 
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     },
 
     head:{
-        marginTop:-6,
+        marginTop:-5,
         marginLeft: 0,
         //borderWidth:2,
         height: 52,
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         shadowOpacity:0.2,
         elevation:2,
         borderRadius:25,
-        width: 375,
+        width: '99.5%',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor:'#e67e22',
@@ -147,14 +147,16 @@ const styles = StyleSheet.create({
     left:{
         
         //borderWidth:2,
-        width:170,
+        width:'47%',
+        //width:170,
         height:246,
         
         
     },
     right:{
         //borderWidth:2,
-        width:200,
+        width:'53%',
+        //width:200,
         height:246,
     },
 
@@ -162,7 +164,8 @@ const styles = StyleSheet.create({
         //borderWidth:2,
         marginTop:5,
         marginLeft:5,
-        width:160,
+        width:'95%',
+        //width:160,
         height:180
     },
 
@@ -192,27 +195,27 @@ const styles = StyleSheet.create({
 
     name:{
         //borderWidth:2,
-        marginTop:20,
+        marginTop:10,
         marginLeft:40,
-        width:160,
+        width:'78%',
         height:40,
         flexDirection:'row'
 
     },
 
     by:{
-        //borderWidth:2,
-        marginTop:-10,
-        marginLeft:3,
-        width:30,
+        //borderWidth: 2,
+        marginTop: 5,
+        marginLeft:2,
+        width:'17%',
         height:25
     },
 
     auther:{
         //borderWidth:2,
-        marginTop:-10,
-        marginLeft:5,
-        width:110,
+        marginTop:5,
+        marginLeft:2,
+        width:'80%',
         height:25
     },
 
@@ -220,7 +223,7 @@ const styles = StyleSheet.create({
         //borderWidth:2,
         marginTop:10,
         marginLeft:5,
-        width:200,
+        width:'98%',
         height:30
     },
 
@@ -228,7 +231,7 @@ const styles = StyleSheet.create({
         //borderWidth:2,
         marginTop:8,
         marginLeft:5,
-        width:190,
+        width:'95%',
         height:40
     },
 
@@ -236,8 +239,8 @@ const styles = StyleSheet.create({
         //borderWidth:2,
         marginTop:10,
         marginLeft:5,
-        width:190,
-        height:150
+        width:'95%',
+        height:130
     },
 
 })

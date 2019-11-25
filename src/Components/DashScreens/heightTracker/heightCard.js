@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
 	},
 	entryNo:{
 		//borderWidth:2,
-		width:90,
+		width:115,
 		height:50,
 		alignItems:'center',
 
