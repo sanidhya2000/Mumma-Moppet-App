@@ -6,7 +6,8 @@ import {
 	StatusBar,
 	ScrollView,
 	TouchableOpacity,
-	ToastAndroid
+	ToastAndroid,
+	RefreshControl
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons';
 import Header from '../../containers/header.js'
@@ -15,7 +16,14 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 
 const initialState={
-	noteList:[]
+	noteList:[],
+	refreshing:false
+}
+
+function wait(timeout) {
+  return new Promise(resolve => {
+    setTimeout(resolve, timeout);
+  });
 }
 
 class NotesScreen extends Component{
@@ -46,6 +54,21 @@ class NotesScreen extends Component{
     	this.props.navigation.navigate('AddNotes')
     }
 
+    onRefresh = () => {
+    this.setState({refreshing : true})
+    axios.get(`https://backtestbaby.herokuapp.com/api/notes/${this.props.uuid}`)
+    	.then(data=>{
+    		if(data.data.length){
+    			console.log(data.data)
+    			this.setState({noteList:data.data})
+    		}
+    		else{
+    			ToastAndroid.show('Some Error :(!!', ToastAndroid.SHORT);
+    		}
+    	})
+    wait(2000).then(() => this.setState({refreshing : false}));
+  	}
+
 	render(){
 
 		const notesList = this.state.noteList.map((d)=>{
@@ -57,7 +80,12 @@ class NotesScreen extends Component{
 	          <Header headerText="Notes" navigation={this.props.screenProps}/>
 	            <StatusBar backgroundColor="#ba3f8f" barStyle="light-content" /> 
 	            <View style={{flex:1}}>
-		          <ScrollView style={styles.container}>
+		          <ScrollView style={styles.container}
+		          	refreshControl={
+			          <RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />
+			        }
+		          >
+		          
 		                {notesList}
 
 		              </ScrollView>

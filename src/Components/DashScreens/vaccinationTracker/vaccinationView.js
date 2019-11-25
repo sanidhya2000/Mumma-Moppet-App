@@ -1,11 +1,18 @@
 import React,{Component} from 'react'
-import {View,Text,ScrollView,ToastAndroid} from 'react-native'
+import {View,Text,ScrollView,ToastAndroid,RefreshControl} from 'react-native'
 import VaccineBlock from './vacinationHolder.js'
 import axios from 'axios'
 import {connect} from 'react-redux'
 
 const initialState={
-	vaccineData:[]
+	vaccineData:[],
+	refreshing:false
+}
+
+function wait(timeout) {
+  return new Promise(resolve => {
+    setTimeout(resolve, timeout);
+  });
 }
 
 class VaccinationView extends Component{
@@ -57,6 +64,15 @@ class VaccinationView extends Component{
 		ToastAndroid.show('Its Not the right Time!!', ToastAndroid.SHORT);
 	}
 
+	 onRefresh = () => {
+		    this.setState({refreshing : true})
+		    axios.get(`https://backtestbaby.herokuapp.com/api/vaccination/${this.props.uuid}`)
+			.then(data=>{
+				this.setState({vaccineData:data.data,refreshing:false})
+			})
+		  
+  	}
+
 
 	render(){
 		let vaccineList = this.state.vaccineData.map((d)=>{
@@ -80,7 +96,9 @@ class VaccinationView extends Component{
 
 		console.log(vaccineList)
 		return(
-				<ScrollView>
+				<ScrollView refreshControl={
+			          <RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />
+			        }>
 					{vaccineList}
 				</ScrollView>
 

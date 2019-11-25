@@ -11,7 +11,7 @@ import SignUp from './pages/signup'
 import Login from './pages/login'
 import Register from './pages/register'
 import DashBoard from './pages/DashBoard'
-
+import AuthLoadingScreen from './pages/AuthLoader.js'
 
 
 import {
@@ -23,10 +23,13 @@ import {
   StatusBar,
   TextInput,
   Button,
-  FlatList
+  FlatList,
+  ActivityIndiactor,
+  AsyncStorage
 } from 'react-native';
 
-import { createAppContainer } from '@react-navigation/native';
+//import { createAppContainer} from '@react-navigation/native';
+import {createAppContainer,createSwitchNavigator} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 
@@ -68,13 +71,13 @@ const styles=StyleSheet.create({
 const RootStack=createStackNavigator(
 {
   Login:Login,
-  SignUp:SignUp,
+  //SignUp:SignUp,
   Register:Register,
   DashBoard:DashBoard,
 
 },
 {
-  initialRouteName:'SignUp',
+  initialRouteName:'DashBoard',
   defaultNavigationOptions:{
     headerStyle:{
       backgroundColor:'#ba2d65'
@@ -83,5 +86,23 @@ const RootStack=createStackNavigator(
 }
 
 );
-export default createAppContainer(RootStack);
+
+const AuthStack = createStackNavigator({SignUp:SignUp})
+
+
+
+
+//export default createAppContainer(RootStack);
 //const AppConatiner= createAppContainer(RootStack);
+export default createAppContainer(createSwitchNavigator(
+    {
+      AuthLoading: AuthLoadingScreen,
+      App: RootStack,
+      Auth: AuthStack,
+    },
+    {
+      initialRouteName: 'AuthLoading',
+    }
+  )
+);
+
