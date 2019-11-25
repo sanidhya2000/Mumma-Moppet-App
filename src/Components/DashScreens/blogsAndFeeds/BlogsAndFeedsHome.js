@@ -66,16 +66,22 @@ class BlogsAndFeedsHome extends Component{
 		})
 	}
 
+	openFullWebPage=(link)=>{
+		console.log(link)
+		this.props.navigation.navigate('WebCard',{
+			weblink:link
+		});
+	}
+
 	render(){
 		
 		const blogCards = this.state.blogsList.map((d,index)=>{
 		
 			return <BlogCard 
 					imageLink={d.image_link}
-					title={d.blog_title} subTitle={d.blog_sub_title} content={d.blog_content} by={this.state.names[index]}/> 
-			
-		
-			
+					weblink={d.video_link}
+					title={d.blog_title} subTitle={d.blog_sub_title} content={d.blog_content} by={this.state.names[index]} openWeb={this.openFullWebPage}/> 
+					
 		})
 
 		return(
