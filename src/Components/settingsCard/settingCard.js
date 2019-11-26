@@ -25,6 +25,7 @@ const initialState={
 	refreshing:false,
   isDateTimePickerVisible:false,
   modalVisible:false,
+  genderDefault :'m',
   selectedInputs:{
     uuid:"",
     babyName:"",
@@ -59,7 +60,7 @@ class SettingCard extends Component{
 				temp.fathersName = data.data.data.fathers_name;
 				temp.mothersName = data.data.data.mothers_name;
 				temp.dateOfBirth = this.formatDate(data.data.data.date_of_birth);
-				temp.gender = genderOptions[genderReverse[data.data.data.gender]];
+				temp.gender = data.data.data.gender;
 				temp.mobileNumber = data.data.data.mobile_number;
 				temp.city = data.data.data.city;
 				temp.avtarLink = data.data.data.avtar_link;
@@ -78,7 +79,7 @@ class SettingCard extends Component{
 				temp.fathersName = data.data.data.fathers_name;
 				temp.mothersName = data.data.data.mothers_name;
 				temp.dateOfBirth = this.formatDate(data.data.data.date_of_birth);
-				temp.gender = genderOptions[genderReverse[data.data.data.gender]];
+				temp.gender = data.data.data.gender;
 				temp.mobileNumber = data.data.data.mobile_number;
 				temp.city = data.data.data.city;
 				temp.avtarLink = data.data.data.avtar_link;
@@ -141,7 +142,8 @@ class SettingCard extends Component{
 
 
   showDateTimePicker = () => {
-      this.setState({ isDateTimePickerVisible: true });
+  	ToastAndroid.show('You Can not Update Date of Birth :(', ToastAndroid.SHORT);
+      // this.setState({ isDateTimePickerVisible: true });
     };
 
   hideDateTimePicker = () => {

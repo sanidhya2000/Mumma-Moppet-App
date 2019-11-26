@@ -63,7 +63,7 @@ class VaccineBlock extends Component{
 								<View style={styles.duration}>
 									<Icon name="md-alarm" size={30} color="rgba(255,255,255,0.8)" style={{marginRight:5}}/>
 									<Text style={{fontSize:16}}>Duration : </Text>
-									<Text style={{fontWeight: 'bold',fontSize:20}}>{this.props.duration}</Text>
+									<Text style={{fontWeight: 'bold',fontSize:20}}>{this.props.duration}days</Text>
 								</View>
 
 								<View style={styles.expectedDate}>
@@ -83,7 +83,7 @@ class VaccineBlock extends Component{
 					</View>
 
 					<View style={styles.footer}>
-						<Text>Click on Icon to Update Status !! </Text>
+						<Text style={{textAlign:'center'}}>{this.props.footText}</Text>
 					</View>
 					
 				</View>
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
 
 	content:{
 		//borderWidth : 2,
-		height:130,
+		height:118,
 		flexDirection :'row'
 	},
 
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
 	},
 
 	textS2:{
-		fontSize:21,
+		fontSize:17,
 		textAlign:'center',
 		paddingTop:5,
 		color:'rgba(255,255,255,0.8)',
@@ -174,6 +174,7 @@ const styles = StyleSheet.create({
 		alignItems : 'center'
 	},
 	response:{
+		marginLeft:5,
 		//borderWidth : 2,
 		width:140,
 		justifyContent : 'center',
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
 	},
 	footer:{
 		//borderWidth:2,
-		height:20,
+		height:40,
 		alignItems : 'center',
 	}
 

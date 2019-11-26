@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Feather';
 const initialState={
 	weight:"",
 	done:{image:require('../../../assets/correctUse.png'),style:{height:100,width:120}},
-	submit:{image:require('../../../assets/submit.png'),style:{height:100,width:100}},
+	submit:{image:require('../../../assets/arrow.png'),style:{height:200,width:200}},
 	notAllowed:{image:require('../../../assets/stp.png'),style:{height:130,width:130}}
 }
 
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   },
   dateHead:{
   	//borderWidth:2,
-  	width:245,
+  	width:225,
   	alignItems:'flex-end',
   	justifyContent:'flex-end',
 

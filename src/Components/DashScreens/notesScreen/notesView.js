@@ -71,8 +71,8 @@ class NotesScreen extends Component{
 
 	render(){
 
-		const notesList = this.state.noteList.map((d)=>{
-			return <NotesCard  key={d.note_id} sno={d.note_id.toString()} title={d.note_text}/>
+		const notesList = this.state.noteList.map((d,i)=>{
+			return <NotesCard  key={d.note_id} sno={d.note_id.toString()} no={i+1} title={d.note_text}/>
 		})
 
 		return(
