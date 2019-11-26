@@ -18,6 +18,9 @@ class NotesAdd extends Component{
 	}
 
 	onSubmit=()=>{
+		let x =this.state.note;
+		x=x.trim();
+		if(this.state.note!="" && this.state.note!=" " && x!=""){
 		axios.post('https://backtestbaby.herokuapp.com/api/notes',{
 			uuid:this.props.uuid,
 			note_text:this.state.note
@@ -34,6 +37,10 @@ class NotesAdd extends Component{
 			console.log(err);
 			ToastAndroid.show('Note not Added :(!!', ToastAndroid.SHORT);
 		})
+	}
+	else{
+		ToastAndroid.show('Enter Valid Note :(!!', ToastAndroid.SHORT);
+	}
 	}
 
 	render(){

@@ -81,14 +81,14 @@ class VaccinationView extends Component{
 			let passDate= exp_date.getDate()+'-'+(exp_date.getMonth()+1)+'-'+exp_date.getFullYear()
 
 			if(today < exp_date){
-				return <VaccineBlock key={d.vaccination_id} sNo={d.vaccination_id} name={d.vaccination_name} duration={d.duration} date={passDate} status="notAllowed" pressEvent={this.timeExceedError}/>
+				return <VaccineBlock key={d.vaccination_id} sNo={d.vaccination_id} name={d.vaccination_name} duration={d.duration} date={passDate} status="notAllowed" pressEvent={this.timeExceedError} footText="This is not the right time for this Vaccine"/>
 			}
 			else{
 				if(d.user_response){
-					return <VaccineBlock key={d.vaccination_id} sNo={d.vaccination_id} name={d.vaccination_name} duration={d.duration} date={passDate} status="done" pressEvent={this.doneUpdateError}/>	
+					return <VaccineBlock key={d.vaccination_id} sNo={d.vaccination_id} name={d.vaccination_name} duration={d.duration} date={passDate} status="done" pressEvent={this.doneUpdateError} footText="You are Done with this Vaccine"/>	
 				}
 				else{
-					return <VaccineBlock key={d.vaccination_id} sNo={d.vaccination_id} name={d.vaccination_name} duration={d.duration} date={passDate} status="notDone" pressEvent={this.updateToDone}/>
+					return <VaccineBlock key={d.vaccination_id} sNo={d.vaccination_id} name={d.vaccination_name} duration={d.duration} date={passDate} status="notDone" pressEvent={this.updateToDone} footText="You have not made your baby Vaccinated! if done click on Icon to change Status!!"/>
 				}
 			}
 

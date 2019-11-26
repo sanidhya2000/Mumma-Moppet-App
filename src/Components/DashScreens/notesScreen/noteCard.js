@@ -10,7 +10,7 @@ class NotesCard extends Component{
 		return(
 				<View style={styles.conatiner}>
 					<View style={styles.header}>
-						<Text style={{marginLeft:10}}>S.No. {this.props.sno}</Text>
+						<Text style={{marginLeft:10}}>S.No. {this.props.no}</Text>
 					</View>
 
 					<View style={styles.section}>
